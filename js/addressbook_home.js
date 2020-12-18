@@ -11,10 +11,10 @@ const getAddressbookDataFromStorage=() =>{
 }
 
 const createInnerHtml=() =>{
+    if(addressbookList.length == 0) return;
     const headerHtml="<th>Full Name</th><th>Address</th><th>City</th>"+
                     "<th>State</th><th>Zip Code</th><th>Phone Number</th><th>Actions</th>";
     let innerHtml=`${headerHtml}`;
-    let addressbookList=createAddressbookJSON();
     for(const addressbookData of addressbookList){
       innerHtml=`${innerHtml}
       <tr>
@@ -31,18 +31,4 @@ const createInnerHtml=() =>{
     `;
     }
     document.querySelector('#table-display').innerHTML=innerHtml;
-}
-const createAddressbookJSON=() =>{
-    let addressbookListLocal=[
-        {
-        _name:'Terrisa Gates',
-        _address:'473, Sector 2, Vashi',
-        _city:'Mumbai',
-        _state:'Maharashtra',
-        _zip:'400003',
-        _tel:'9876543211',
-        _id:new Date().getTime(),
-        }
-    ];
-    return addressbookListLocal;
 }
