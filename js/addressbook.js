@@ -24,7 +24,7 @@ class AddressbookData{
     }
     get address(){ return this._address; }
     set address(address){
-        let addrRegex=RegExp('^(?=.*\\s)[A-Za-z]{3,}[A-Za-z\\s]{1,}$');
+        let addrRegex=RegExp('^(?=.*\\s)(?=.*[,])[A-Za-z0-9]{3,}[A-Za-z0-9\\s,]{1,}$');
         if(addrRegex.test(address))
             this._address=address;
         else
