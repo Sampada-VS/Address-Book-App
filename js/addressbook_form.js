@@ -1,3 +1,6 @@
+let isUpdate=false;
+let addressbookObj={};
+
 window.addEventListener('DOMContentLoaded',(event)=>{
     const name=document.querySelector('#name');
     const textError=document.querySelector('.text-error');
@@ -58,6 +61,7 @@ window.addEventListener('DOMContentLoaded',(event)=>{
             zipError.textContent=e;
         }
     });
+    checkForUpdate();
 });
 
 const save = () => {
@@ -134,4 +138,18 @@ const setValue=(id,value) => {
     const element=document.querySelector(id);
     element.value=value;
 }
-
+const checkForUpdate=() =>{
+    const addressbookJson=localStorage.getItem('editPerson');
+    isUpdate=addressbookJson ? true : false;
+    if(!isUpdate) return;
+    addressbookObj=JSON.parse(addressbookJson);
+    setForm();
+}
+const setForm=() => {
+    setValue('#name',addressbookObj._name);
+    setValue('#tel',addressbookObj._tel);
+    setValue('#address',addressbookObj._address);
+    setValue('#city',addressbookObj._city);
+    setValue('#state',addressbookObj._state);
+    setValue('#zip',addressbookObj._zip);
+}
