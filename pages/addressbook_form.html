@@ -21,7 +21,7 @@
       </div>
     </header>
     <div class="form-content">
-      <form class="form" action="#">
+      <form class="form" action="#"  onreset="resetForm()" onsubmit="save()">
         <div class="form-head">
           <span>Person Address Form</span>
           <span><a href="addressbook_home.html"><img src="../assets/images/cancel_icon.PNG" alt="cancel icon">
@@ -75,6 +75,12 @@
               <input class="input zip" type="number" id="zip" name="zip" required>
               <error-output class="zip-error" for="number"></error-output>
             </div>
+          </div>
+        </div>
+        <div class="button-content">
+          <div class="submit-reset">
+            <button type="submit" class="button submitButton">Add</button>
+            <button type="reset" class="resetButton button">Reset</button>
           </div>
         </div>
       </form>
