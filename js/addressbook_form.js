@@ -2,43 +2,60 @@ window.addEventListener('DOMContentLoaded',(event)=>{
     const name=document.querySelector('#name');
     const textError=document.querySelector('.text-error');
     name.addEventListener('input',function(){
-        let nameRegex=RegExp('^[A-Z][a-z]{2,}\\s[A-Z][a-z]{2,}$');
-        if(nameRegex.test(name.value))
+        if(name.value.length == 0){
             textError.textContent="";
-        else
-            textError.textContent="Name is incorrect.";
+            return;
+        }
+        try{
+            (new AddressbookData()).name=name.value;
+            textError.textContent="";
+        }catch(e){
+            textError.textContent=e;
+        }
     });
 
     const telephone=document.querySelector('#tel');
     const telephoneError=document.querySelector('.tel-error');
     telephone.addEventListener('input',function(){
-        let telRegex1=RegExp('^[7-9]{1}[0-9]{9}$');
-        let telRegex2=RegExp('^[1-9]{2}[7-9]{1}[0-9]{9}$');
-        let telRegex3=RegExp('^[+][1-9]{2}[7-9]{1}[0-9]{9}$');
-
-        if(telRegex1.test(telephone.value) || telRegex2.test(telephone.value) || telRegex3.test(telephone.value))
+        if(telephone.value.length == 0){
             telephoneError.textContent="";
-        else
-            telephoneError.textContent="Phone Number is incorrect.";
+            return;
+        }
+        try{
+            (new AddressbookData()).tel=telephone.value;
+            telephoneError.textContent="";
+        }catch(e){
+            telephoneError.textContent=e;
+        }
     });
 
     const address=document.querySelector('#address');
     const addressError=document.querySelector('.address-error');
     address.addEventListener('input',function(){
-        let addrRegex=RegExp('^(?=.*\\s)[A-Za-z]{3,}[A-Za-z\\s]{1,}$');
-        if(addrRegex.test(address.value))
+        if(address.value.length == 0){
             addressError.textContent="";
-        else
-            addressError.textContent="Address is incorrect.";
+            return;
+        }
+        try{
+            (new AddressbookData()).address=address.value;
+            addressError.textContent="";
+        }catch(e){
+            addressError.textContent=e;
+        }
     });
 
     const zip=document.querySelector('#zip');
     const zipError=document.querySelector('.zip-error');
     zip.addEventListener('input',function(){
-        let pinCodeRegex=RegExp('^[1-9]{1}[0-9]{5}$');
-        if(pinCodeRegex.test(zip.value))
+        if(zip.value.length == 0){
             zipError.textContent="";
-        else
-            zipError.textContent="Zip Code is incorrect.";
+            return;
+        }
+        try{
+            (new AddressbookData()).zip=zip.value;
+            zipError.textContent="";
+        }catch(e){
+            zipError.textContent=e;
+        }
     });
 });
