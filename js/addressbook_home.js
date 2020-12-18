@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded',(event)=>{
   addressbookList=getAddressbookDataFromStorage();
   document.querySelector(".person-count").textContent=addressbookList.length;
   createInnerHtml();
+  localStorage.removeItem('editPerson');
 });
 
 const getAddressbookDataFromStorage=() =>{
@@ -33,7 +34,7 @@ const createInnerHtml=() =>{
     document.querySelector('#table-display').innerHTML=innerHtml;
 }
 const remove= (node) => {
-    let addressbookData=addressbookList.find(bookData => bookData._id == node._id);
+    let addressbookData=addressbookList.find(bookData => bookData._id == node.id);
     if(!addressbookData) return;
     const index=addressbookList.map(bookData => bookData._id)
                                   .indexOf(addressbookData._id);
