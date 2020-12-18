@@ -67,8 +67,8 @@ const save = () => {
     }catch(e){
       return;
     }
-  }
-  function createAndUpdateStorage(addressbookData){
+}
+function createAndUpdateStorage(addressbookData){
     let addressbookList=JSON.parse(localStorage.getItem("AddressbookList"));
     if(addressbookList != undefined){
       addressbookList.push(addressbookData);
@@ -78,8 +78,8 @@ const save = () => {
     }
     alert(addressbookList.toString());
     localStorage.setItem("AddressbookList",JSON.stringify(addressbookList));
-  }
-  const createAddressbookData = () => {
+}
+const createAddressbookData = () => {
     let addressbookData=new AddressbookData();
     try{
       addressbookData.name=getInputValueById('#name');
@@ -109,12 +109,29 @@ const save = () => {
     }
     alert(addressbookData.toString());
     return addressbookData;
-  }
-  const getInputValueById=(id) => {
+}
+const getInputValueById=(id) => {
     let value=document.querySelector(id).value;
     return value;
-  }
-  const setTextValue=(id,value) => {
+}
+const setTextValue=(id,value) => {
     const element=document.querySelector(id);
     element.textContent=value;
-  }
+}
+const resetForm = () => {
+    setValue('#name','');
+    setValue('#tel','');
+    setValue('#address','');
+    setValue('#zip','');
+    setValue('#city','Select City');
+    setValue('#state','Select State');
+    setTextValue('.text-error','');
+    setTextValue('.tel-error','');
+    setTextValue('.address-error','');
+    setTextValue('.zip-error','');
+}
+const setValue=(id,value) => {
+    const element=document.querySelector(id);
+    element.value=value;
+}
+
