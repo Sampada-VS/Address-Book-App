@@ -59,3 +59,62 @@ window.addEventListener('DOMContentLoaded',(event)=>{
         }
     });
 });
+
+const save = () => {
+    try{
+      let addressbookData=createAddressbookData();
+      createAndUpdateStorage(addressbookData);
+    }catch(e){
+      return;
+    }
+  }
+  function createAndUpdateStorage(addressbookData){
+    let addressbookList=JSON.parse(localStorage.getItem("AddressbookList"));
+    if(addressbookList != undefined){
+      addressbookList.push(addressbookData);
+    }
+    else{
+      addressbookList=[addressbookData];
+    }
+    alert(addressbookList.toString());
+    localStorage.setItem("AddressbookList",JSON.stringify(addressbookList));
+  }
+  const createAddressbookData = () => {
+    let addressbookData=new AddressbookData();
+    try{
+      addressbookData.name=getInputValueById('#name');
+    }catch(e){
+      setTextValue('.text-error',e);
+      throw e;
+    }
+    try{
+        addressbookData.tel=getInputValueById('#tel');
+    }catch(e){
+        setTextValue('.tel-error',e);
+    throw e;
+    }
+    try{
+        addressbookData.address=getInputValueById('#address');
+    }catch(e){
+        setTextValue('.address-error',e);
+    throw e;
+    }
+    addressbookData.city=getInputValueById('#city');
+    addressbookData.state=getInputValueById('#state');
+    try{
+        addressbookData.zip=getInputValueById('#zip');
+    }catch(e){
+        setTextValue('.zip-error',e);
+    throw e;
+    }
+    alert(addressbookData.toString());
+    return addressbookData;
+  }
+  const getInputValueById=(id) => {
+    let value=document.querySelector(id).value;
+    return value;
+  }
+  const setTextValue=(id,value) => {
+    const element=document.querySelector(id);
+    element.textContent=value;
+  }
